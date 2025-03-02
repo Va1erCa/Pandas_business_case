@@ -90,6 +90,7 @@ def main() -> None:
             )
             # оставляем нужные признаки
             df_pharmacy = df_pharmacy.loc[:, res_columns]
+            df_pharmacy['Номер накладной'] += np.where(df_pharmacy['Поставщик'].str.find('ЕАПТЕКА') < 0, '', '/15')
 
             # готовим файловую инфраструктуру для записи результатов
             if not Path(report_path).is_dir() :
